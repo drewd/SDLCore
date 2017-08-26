@@ -1,7 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11134"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -653,7 +655,7 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="SDLCore" customModuleProvider="target"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="75" y="0.0"/>
@@ -679,15 +681,77 @@
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="SDLCore" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <rect key="frame" x="0.0" y="0.0" width="840" height="738"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7GR-mm-JkW" userLabel="display">
+                                <rect key="frame" x="17" y="235" width="806" height="486"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageFrameStyle="photo" image="nav_bg" id="Px8-uS-tJW"/>
+                            </imageView>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mNz-aS-Dep" userLabel="down" customClass="MaskedButton" customModule="SDLCore" customModuleProvider="target">
+                                <rect key="frame" x="320" y="20" width="200" height="200"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="DownButton" id="oUK-DO-Q1s"/>
+                                <connections>
+                                    <action selector="downPressed:" target="XfG-lQ-9wD" id="j6L-IN-i0Z"/>
+                                </connections>
+                            </imageView>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5ST-1u-oJh" userLabel="left" customClass="MaskedButton" customModule="SDLCore" customModuleProvider="target">
+                                <rect key="frame" x="320" y="20" width="200" height="200"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="LeftButton" id="vXV-4n-fOV"/>
+                                <connections>
+                                    <action selector="leftPressed:" target="XfG-lQ-9wD" id="DFk-9R-Bbr"/>
+                                </connections>
+                            </imageView>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yon-dP-tyh" userLabel="up" customClass="MaskedButton" customModule="SDLCore" customModuleProvider="target">
+                                <rect key="frame" x="320" y="20" width="200" height="200"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="UpButton" id="PZh-MB-vZ5"/>
+                                <connections>
+                                    <action selector="upPressed:" target="XfG-lQ-9wD" id="2rf-5M-Ny4"/>
+                                </connections>
+                            </imageView>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ujk-ij-Xrb" userLabel="right" customClass="MaskedButton" customModule="SDLCore" customModuleProvider="target">
+                                <rect key="frame" x="320" y="20" width="200" height="200"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="RightButton" id="8sh-Uh-Pj3"/>
+                                <connections>
+                                    <action selector="rightPressed:" target="XfG-lQ-9wD" id="55K-76-9vs"/>
+                                </connections>
+                            </imageView>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bVp-CI-g4h" userLabel="ok" customClass="MaskedButton" customModule="SDLCore" customModuleProvider="target">
+                                <rect key="frame" x="320" y="20" width="200" height="200"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="OkButton" id="TUt-Ek-NuX"/>
+                                <connections>
+                                    <action selector="okPressed:" target="XfG-lQ-9wD" id="I9O-oX-13G"/>
+                                </connections>
+                            </imageView>
+                        </subviews>
                     </view>
+                    <connections>
+                        <outlet property="downButton" destination="mNz-aS-Dep" id="5rH-3f-G2M"/>
+                        <outlet property="leftButton" destination="5ST-1u-oJh" id="eGQ-EV-lma"/>
+                        <outlet property="okButton" destination="bVp-CI-g4h" id="hYs-Mt-fTU"/>
+                        <outlet property="rightButton" destination="Ujk-ij-Xrb" id="1gn-Kw-5WG"/>
+                        <outlet property="upButton" destination="Yon-dP-tyh" id="nJ0-Ga-SVQ"/>
+                    </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="655"/>
+            <point key="canvasLocation" x="92" y="889"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="DownButton" width="200" height="200"/>
+        <image name="LeftButton" width="200" height="200"/>
+        <image name="OkButton" width="200" height="200"/>
+        <image name="RightButton" width="200" height="200"/>
+        <image name="UpButton" width="200" height="200"/>
+        <image name="nav_bg" width="800" height="480"/>
+    </resources>
 </document>
