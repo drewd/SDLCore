@@ -11,7 +11,10 @@
 		2770D9621F50EEE200FCE066 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2770D9611F50EEE200FCE066 /* ViewController.swift */; };
 		2770D9641F50EEE200FCE066 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2770D9631F50EEE200FCE066 /* Assets.xcassets */; };
 		2770D9671F50EEE200FCE066 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2770D9651F50EEE200FCE066 /* Main.storyboard */; };
-		2770D96F1F50FBD300FCE066 /* HandsetServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2770D96E1F50FBD300FCE066 /* HandsetServer.swift */; };
+		2770D96F1F50FBD300FCE066 /* HandsetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2770D96E1F50FBD300FCE066 /* HandsetManager.swift */; };
+		2770D9751F52757600FCE066 /* HandsetApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2770D9741F52757600FCE066 /* HandsetApplication.swift */; };
+		2770D9771F5275B200FCE066 /* SDLMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2770D9761F5275B200FCE066 /* SDLMessage.swift */; };
+		2770D9791F52761C00FCE066 /* Dictionary+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2770D9781F52761C00FCE066 /* Dictionary+JSON.swift */; };
 		4468039BA75A882BD14EA550 /* Pods_SDLCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D21D926C4B082D8852AACD0 /* Pods_SDLCore.framework */; };
 /* End PBXBuildFile section */
 
@@ -23,7 +26,10 @@
 		2770D9631F50EEE200FCE066 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2770D9661F50EEE200FCE066 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2770D9681F50EEE200FCE066 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2770D96E1F50FBD300FCE066 /* HandsetServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandsetServer.swift; sourceTree = "<group>"; };
+		2770D96E1F50FBD300FCE066 /* HandsetManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandsetManager.swift; sourceTree = "<group>"; };
+		2770D9741F52757600FCE066 /* HandsetApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandsetApplication.swift; sourceTree = "<group>"; };
+		2770D9761F5275B200FCE066 /* SDLMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDLMessage.swift; sourceTree = "<group>"; };
+		2770D9781F52761C00FCE066 /* Dictionary+JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+JSON.swift"; sourceTree = "<group>"; };
 		8A2F902B0CE40E7F8F6E9138 /* Pods-SDLCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDLCore.release.xcconfig"; path = "Pods/Target Support Files/Pods-SDLCore/Pods-SDLCore.release.xcconfig"; sourceTree = "<group>"; };
 		8D21D926C4B082D8852AACD0 /* Pods_SDLCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SDLCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -61,7 +67,10 @@
 		2770D95E1F50EEE200FCE066 /* SDLCore */ = {
 			isa = PBXGroup;
 			children = (
-				2770D96E1F50FBD300FCE066 /* HandsetServer.swift */,
+				2770D9781F52761C00FCE066 /* Dictionary+JSON.swift */,
+				2770D9761F5275B200FCE066 /* SDLMessage.swift */,
+				2770D9741F52757600FCE066 /* HandsetApplication.swift */,
+				2770D96E1F50FBD300FCE066 /* HandsetManager.swift */,
 				2770D95F1F50EEE200FCE066 /* AppDelegate.swift */,
 				2770D9611F50EEE200FCE066 /* ViewController.swift */,
 				2770D9631F50EEE200FCE066 /* Assets.xcassets */,
@@ -211,9 +220,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2770D96F1F50FBD300FCE066 /* HandsetServer.swift in Sources */,
+				2770D96F1F50FBD300FCE066 /* HandsetManager.swift in Sources */,
 				2770D9621F50EEE200FCE066 /* ViewController.swift in Sources */,
+				2770D9751F52757600FCE066 /* HandsetApplication.swift in Sources */,
+				2770D9791F52761C00FCE066 /* Dictionary+JSON.swift in Sources */,
 				2770D9601F50EEE200FCE066 /* AppDelegate.swift in Sources */,
+				2770D9771F5275B200FCE066 /* SDLMessage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,6 +384,7 @@
 				2770D96D1F50EEE200FCE066 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

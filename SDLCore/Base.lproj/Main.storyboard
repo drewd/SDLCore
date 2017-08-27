@@ -689,14 +689,22 @@
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7GR-mm-JkW" userLabel="display">
                                 <rect key="frame" x="17" y="235" width="806" height="486"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageFrameStyle="photo" image="nav_bg" id="Px8-uS-tJW"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageFrameStyle="photo" image="bg_nav" id="Px8-uS-tJW"/>
                             </imageView>
-                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mNz-aS-Dep" userLabel="down" customClass="MaskedButton" customModule="SDLCore" customModuleProvider="target">
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jVL-YP-QFO" userLabel="down" customClass="MaskedButton" customModule="SDLCore" customModuleProvider="target">
                                 <rect key="frame" x="320" y="20" width="200" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="DownButton" id="oUK-DO-Q1s"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="DownButton" id="Gpg-E7-MyO"/>
                                 <connections>
-                                    <action selector="downPressed:" target="XfG-lQ-9wD" id="j6L-IN-i0Z"/>
+                                    <action selector="downPressed:" target="XfG-lQ-9wD" id="Iyn-gI-dB6"/>
+                                </connections>
+                            </imageView>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PhC-hr-tgc" userLabel="up" customClass="MaskedButton" customModule="SDLCore" customModuleProvider="target">
+                                <rect key="frame" x="320" y="20" width="200" height="200"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="UpButton" id="h6T-10-zSM"/>
+                                <connections>
+                                    <action selector="upPressed:" target="XfG-lQ-9wD" id="cBg-AO-oII"/>
                                 </connections>
                             </imageView>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5ST-1u-oJh" userLabel="left" customClass="MaskedButton" customModule="SDLCore" customModuleProvider="target">
@@ -705,14 +713,6 @@
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="LeftButton" id="vXV-4n-fOV"/>
                                 <connections>
                                     <action selector="leftPressed:" target="XfG-lQ-9wD" id="DFk-9R-Bbr"/>
-                                </connections>
-                            </imageView>
-                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yon-dP-tyh" userLabel="up" customClass="MaskedButton" customModule="SDLCore" customModuleProvider="target">
-                                <rect key="frame" x="320" y="20" width="200" height="200"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="UpButton" id="PZh-MB-vZ5"/>
-                                <connections>
-                                    <action selector="upPressed:" target="XfG-lQ-9wD" id="2rf-5M-Ny4"/>
                                 </connections>
                             </imageView>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ujk-ij-Xrb" userLabel="right" customClass="MaskedButton" customModule="SDLCore" customModuleProvider="target">
@@ -734,11 +734,11 @@
                         </subviews>
                     </view>
                     <connections>
-                        <outlet property="downButton" destination="mNz-aS-Dep" id="5rH-3f-G2M"/>
+                        <outlet property="downButton" destination="jVL-YP-QFO" id="jDx-xY-wBF"/>
                         <outlet property="leftButton" destination="5ST-1u-oJh" id="eGQ-EV-lma"/>
                         <outlet property="okButton" destination="bVp-CI-g4h" id="hYs-Mt-fTU"/>
                         <outlet property="rightButton" destination="Ujk-ij-Xrb" id="1gn-Kw-5WG"/>
-                        <outlet property="upButton" destination="Yon-dP-tyh" id="nJ0-Ga-SVQ"/>
+                        <outlet property="upButton" destination="PhC-hr-tgc" id="8Nz-xJ-SBh"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -752,6 +752,6 @@
         <image name="OkButton" width="200" height="200"/>
         <image name="RightButton" width="200" height="200"/>
         <image name="UpButton" width="200" height="200"/>
-        <image name="nav_bg" width="800" height="480"/>
+        <image name="bg_nav" width="800" height="480"/>
     </resources>
 </document>

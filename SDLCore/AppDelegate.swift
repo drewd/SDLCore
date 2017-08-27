@@ -1,10 +1,3 @@
-//
-//  AppDelegate.swift
-//  SDLCore
-//
-//  Created by Michael Pitts on 8/25/17.
-//  Copyright © 2017 Xevo. All rights reserved.
-//
 
 import Cocoa
 
@@ -14,8 +7,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Start SDL Core
-        //HandsetServer.sharedInstance.start()
+        // Start listening for handset connections
+        HandsetManager.sharedInstance.listen()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
