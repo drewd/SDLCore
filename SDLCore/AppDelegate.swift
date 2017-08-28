@@ -8,7 +8,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Start listening for handset connections
-        HandsetManager.sharedInstance.listen()
+        RemoteApplicationManager.sharedInstance.listen()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
