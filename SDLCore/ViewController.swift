@@ -37,8 +37,23 @@ class ViewController: NSViewController {
         super.viewDidLoad()
         self.view.window?.setFrame(NSRect(x: 0, y: 0, width: windowWidth, height: windowHeight), display: true)
         self.view.layer?.backgroundColor = NSColor.black.cgColor
+        
+        NotificationCenter.default.addObserver(forName: .videoFrameReceived,
+                                               object: nil, queue: nil,
+                                               using: videoFrameReceived)
     }
     
+    func videoFrameReceived(notification: Notification) -> Void {
+        guard let userInfo = notification.userInfo,
+            let frameData  = userInfo["frameData"] as? Data else { return }
+        print("Decode H.264: \(frameData.count) bytes")
+        // TODO: Decode h.264 data
+        DispatchQueue.main.async {
+            // Render on main thread
+            print("Draw video frame")
+        }
+    }
+
     override var representedObject: Any? {
         didSet {
             // Update the view, if already loaded.
@@ -59,6 +74,7 @@ class ViewController: NSViewController {
     }
     @IBAction func okPressed(_ sender: Any) {
         print("OK pressed");
+        RemoteApplicationManager.sharedInstance.activate(); // DEMO HACK to activate the remote app
     }
 }
 

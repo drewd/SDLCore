@@ -144,16 +144,16 @@ class SDLMessage {
         if let payload = payload {
             do {
                 if frameType != .control && serviceType == .rpc {
-                    desc.append(", rpcType: \(rpcType), functionID: \(functionID), correlationID: \(correlationID), jsonLen: \(jsonLength)\n")
+                    desc.append(", rpcType: \(rpcType), functionID: \(functionID), correlationID: \(correlationID), jsonLen: \(jsonLength)")
                     if let jsonData = jsonData {
                         if let str = try jsonData.jsonString() {
                             desc.append(str + "\n")
                         } else {
-                            desc.append("RPC PAYLOAD: \(payload)")
+                            desc.append("\nRPC PAYLOAD: \(payload)")
                         }
                     }
                 } else {
-                    desc.append("PAYLOAD: \(payload)")
+                    desc.append("\nPAYLOAD: \(payload)")
                 }
             } catch let error as NSError { print(error.localizedDescription) }
             

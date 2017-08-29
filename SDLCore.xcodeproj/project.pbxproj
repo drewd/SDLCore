@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		276257391F54F31A00FD88F7 /* VideoProjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2770D97D1F530D4300FCE066 /* VideoProjection.swift */; };
 		2770D9601F50EEE200FCE066 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2770D95F1F50EEE200FCE066 /* AppDelegate.swift */; };
 		2770D9621F50EEE200FCE066 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2770D9611F50EEE200FCE066 /* ViewController.swift */; };
 		2770D9641F50EEE200FCE066 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2770D9631F50EEE200FCE066 /* Assets.xcassets */; };
@@ -15,7 +16,6 @@
 		2770D9751F52757600FCE066 /* RemoteApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2770D9741F52757600FCE066 /* RemoteApplication.swift */; };
 		2770D9771F5275B200FCE066 /* SDLMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2770D9761F5275B200FCE066 /* SDLMessage.swift */; };
 		2770D9791F52761C00FCE066 /* JSONExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2770D9781F52761C00FCE066 /* JSONExtensions.swift */; };
-		2770D97E1F530D4300FCE066 /* VideoProjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2770D97D1F530D4300FCE066 /* VideoProjection.swift */; };
 		4468039BA75A882BD14EA550 /* Pods_SDLCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D21D926C4B082D8852AACD0 /* Pods_SDLCore.framework */; };
 /* End PBXBuildFile section */
 
@@ -234,7 +234,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2770D96F1F50FBD300FCE066 /* RemoteApplicationManager.swift in Sources */,
-				2770D97E1F530D4300FCE066 /* VideoProjection.swift in Sources */,
+				276257391F54F31A00FD88F7 /* VideoProjection.swift in Sources */,
 				2770D9621F50EEE200FCE066 /* ViewController.swift in Sources */,
 				2770D9751F52757600FCE066 /* RemoteApplication.swift in Sources */,
 				2770D9791F52761C00FCE066 /* JSONExtensions.swift in Sources */,

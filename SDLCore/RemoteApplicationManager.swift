@@ -26,6 +26,11 @@ class RemoteApplicationManager {
             }
         }
     }
+    func activate() {
+        if let app = apps.first { // DEMO HACK! Always chooses first in list
+            app.sendHMIStatus()
+        }
+    }
     func remove(_ app: RemoteApplication) {
         print("pre--\(apps)")
         apps = apps.filter { $0.appBundleID != app.appBundleID }

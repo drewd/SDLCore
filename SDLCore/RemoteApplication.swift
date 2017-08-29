@@ -9,6 +9,7 @@ class RemoteApplication {
     fileprivate var appInterface: Dictionary<String, Any>?
     fileprivate var recvMessageID: UInt32 = 0
     fileprivate var sendMessageID: UInt32 = 0
+    fileprivate let videoProjection = VideoProjectionReceiver()
     var isMediaApplication: Bool {
         get {
             guard let appInterface = appInterface else { return false }
@@ -59,7 +60,8 @@ class RemoteApplication {
             case .rpc:
                 response = handleRPCMessage(recvMsg)
             case .audio: break
-            case .video: break
+            case .video:
+                if let frameData = recvMsg.payload { videoProjection.addFrame(frameData) }
             case .bulkData: break
             }
         }
@@ -88,6 +90,9 @@ class RemoteApplication {
     }
 }
 
+//
+// Control Message Handlers
+//
 extension RemoteApplication {
     func handleStartService(_ request: SDLMessage) -> SDLMessage? {
         let response = request.createResponseHeader()
@@ -122,7 +127,30 @@ extension RemoteApplication {
     }
 }
 
+//
+// RPC Message Handlers
+//
 extension RemoteApplication {
+    func sendHMIStatus(/* TODO: Add parameters */) {
+        let notification = SDLMessage.init(compressed: false,
+                                       frameType: .single,
+                                       serviceType: .rpc,
+                                       controlCmd: .heartbeat,
+                                       sessionID: 1,
+                                       functionID: .onHMIStatus,
+                                       correlationID: 0)
+        notification.rpcType = .notification
+        do {
+            var responseParams = Dictionary<String, Any>()
+            responseParams["audioStreamingState"]   = "AUDIBLE"
+            responseParams["hmiLevel"]              = "FULL"
+            responseParams["systemContext"]         = "MAIN"
+            if let jsonData = try responseParams.jsonData() {
+                notification.setJSON(jsonData)
+            }
+        } catch let error as NSError { print(error) }
+        notification.send(client: client)
+    }
     func handleRegisterAppInterface(_ request: SDLMessage, params: Dictionary<String, Any>?) -> SDLMessage {
         // Parse params
         if let params = params {
@@ -147,6 +175,10 @@ extension RemoteApplication {
         return response
     }
     func handleOnHMIStatus(_ request: SDLMessage, params: Dictionary<String, Any>?) -> SDLMessage {
+        let response = request.createResponseHeader();
+        return response
+    }
+    func handleHapticData(_ request: SDLMessage, params: Dictionary<String, Any>?) -> SDLMessage {
         let response = request.createResponseHeader();
         return response
     }
@@ -182,6 +214,7 @@ extension RemoteApplication {
         case .registerAppInterface: response = handleRegisterAppInterface(msg, params: params)
         case .onHMIStatus:          response = handleOnHMIStatus(msg, params: params)
         case .listFiles:            response = handleListFiles(msg, params: params)
+        case .sendHapticData:       response = handleHapticData(msg, params: params)
         default:                    assert(false, "*** \(msg.functionID) is not implemented ***")
         }
         return response
