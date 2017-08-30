@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		276257391F54F31A00FD88F7 /* VideoProjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2770D97D1F530D4300FCE066 /* VideoProjection.swift */; };
 		2762573D1F55E66500FD88F7 /* VideoDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2762573C1F55E66500FD88F7 /* VideoDecoder.m */; };
+		276257401F5746F900FD88F7 /* MaskedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2762573F1F5746F900FD88F7 /* MaskedButton.swift */; };
+		276257431F57586200FD88F7 /* ImageViewWithText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276257421F57586200FD88F7 /* ImageViewWithText.swift */; };
+		276257461F5758A300FD88F7 /* DisplayHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276257451F5758A300FD88F7 /* DisplayHeaderView.swift */; };
 		2770D9601F50EEE200FCE066 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2770D95F1F50EEE200FCE066 /* AppDelegate.swift */; };
 		2770D9621F50EEE200FCE066 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2770D9611F50EEE200FCE066 /* ViewController.swift */; };
 		2770D9641F50EEE200FCE066 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2770D9631F50EEE200FCE066 /* Assets.xcassets */; };
@@ -25,6 +28,9 @@
 		2762573A1F55E66400FD88F7 /* SDLCore-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SDLCore-Bridging-Header.h"; sourceTree = "<group>"; };
 		2762573B1F55E66500FD88F7 /* VideoDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoDecoder.h; sourceTree = "<group>"; };
 		2762573C1F55E66500FD88F7 /* VideoDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoDecoder.m; sourceTree = "<group>"; };
+		2762573F1F5746F900FD88F7 /* MaskedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaskedButton.swift; sourceTree = "<group>"; };
+		276257421F57586200FD88F7 /* ImageViewWithText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewWithText.swift; sourceTree = "<group>"; };
+		276257451F5758A300FD88F7 /* DisplayHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayHeaderView.swift; sourceTree = "<group>"; };
 		2770D95C1F50EEE200FCE066 /* SDLCore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SDLCore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2770D95F1F50EEE200FCE066 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2770D9611F50EEE200FCE066 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -53,6 +59,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		276257441F57588200FD88F7 /* Custom Controls */ = {
+			isa = PBXGroup;
+			children = (
+				276257451F5758A300FD88F7 /* DisplayHeaderView.swift */,
+				2762573F1F5746F900FD88F7 /* MaskedButton.swift */,
+				276257421F57586200FD88F7 /* ImageViewWithText.swift */,
+			);
+			name = "Custom Controls";
+			sourceTree = "<group>";
+		};
 		2770D9531F50EEE200FCE066 = {
 			isa = PBXGroup;
 			children = (
@@ -75,6 +91,7 @@
 		2770D95E1F50EEE200FCE066 /* SDLCore */ = {
 			isa = PBXGroup;
 			children = (
+				276257441F57588200FD88F7 /* Custom Controls */,
 				2762573B1F55E66500FD88F7 /* VideoDecoder.h */,
 				2762573C1F55E66500FD88F7 /* VideoDecoder.m */,
 				2770D97D1F530D4300FCE066 /* VideoProjection.swift */,
@@ -82,8 +99,8 @@
 				2770D9761F5275B200FCE066 /* SDLMessage.swift */,
 				2770D9741F52757600FCE066 /* RemoteApplication.swift */,
 				2770D96E1F50FBD300FCE066 /* RemoteApplicationManager.swift */,
-				2770D95F1F50EEE200FCE066 /* AppDelegate.swift */,
 				2770D9611F50EEE200FCE066 /* ViewController.swift */,
+				2770D95F1F50EEE200FCE066 /* AppDelegate.swift */,
 				2770D9631F50EEE200FCE066 /* Assets.xcassets */,
 				2770D9651F50EEE200FCE066 /* Main.storyboard */,
 				2770D9681F50EEE200FCE066 /* Info.plist */,
@@ -242,11 +259,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				2770D96F1F50FBD300FCE066 /* RemoteApplicationManager.swift in Sources */,
+				276257431F57586200FD88F7 /* ImageViewWithText.swift in Sources */,
 				276257391F54F31A00FD88F7 /* VideoProjection.swift in Sources */,
 				2770D9621F50EEE200FCE066 /* ViewController.swift in Sources */,
 				2770D9751F52757600FCE066 /* RemoteApplication.swift in Sources */,
 				2770D9791F52761C00FCE066 /* ClassExtensions.swift in Sources */,
+				276257401F5746F900FD88F7 /* MaskedButton.swift in Sources */,
 				2770D9601F50EEE200FCE066 /* AppDelegate.swift in Sources */,
+				276257461F5758A300FD88F7 /* DisplayHeaderView.swift in Sources */,
 				2762573D1F55E66500FD88F7 /* VideoDecoder.m in Sources */,
 				2770D9771F5275B200FCE066 /* SDLMessage.swift in Sources */,
 			);

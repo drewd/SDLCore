@@ -6,54 +6,6 @@ private let viewportHeight  = 480
 private let windowWidth     = viewportWidth + 40
 private let windowHeight    = viewportHeight + 260
 
-private var currentlyPressedButton: MaskedButton?
-
-class MaskedButton : NSImageView {
-    var isPressed = false
-    var normalName: String?
-    var pressedName: String?
-    override open func mouseDown(with event: NSEvent) {
-        super.mouseDown(with: event)
-        let hitArea = NSMakeRect(event.locationInWindow.x, event.locationInWindow.y, 1.0, 1.0)
-        guard let hit = self.image?.hitTest(hitArea,
-                                            withDestinationRect: self.frame,
-                                            context: nil,
-                                            hints: nil,
-                                            flipped: false) else { return }
-        if hit {
-            if let name = image?.name() {
-                normalName = name
-                pressedName = name + "_pressed"
-                image = NSImage.init(named: pressedName!)
-            }
-            currentlyPressedButton = self
-            isPressed = true
-        }
-    }
-    override open func mouseUp(with event: NSEvent) {
-        super.mouseUp(with: event)
-        if let button = currentlyPressedButton {
-            currentlyPressedButton = nil
-            if let name = button.normalName {
-                button.image = NSImage.init(named: name)
-            }
-            button.isPressed = false
-            
-            let hitArea = NSMakeRect(event.locationInWindow.x, event.locationInWindow.y, 1.0, 1.0)
-            guard let hit = button.image?.hitTest(hitArea,
-                                                  withDestinationRect: button.frame,
-                                                  context: nil,
-                                                  hints: nil,
-                                                  flipped: false) else { return }
-            if hit {
-                guard let action = button.action,
-                    let target = button.target else { return }
-                _ = target.perform(action, with: button)
-            }
-        }
-    }
-}
-
 class ViewController: NSViewController {
     
     let borderWidth: CGFloat = 3.0
@@ -70,6 +22,8 @@ class ViewController: NSViewController {
     var navButton = NSButton()
     var entertainmentButton = NSButton()
     var climateButton = NSButton()
+    var displayHeader = DisplayHeaderView()
+    var displayBottomControls = ImageViewWithText()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,45 +48,53 @@ class ViewController: NSViewController {
     
     private func buildMainDisplay() {
         let displayRect = displayView.frame.insetBy(dx: borderWidth, dy: borderWidth)
-        if let btnImage = NSImage.init(named: "phone-statusbar-bg") {
-            phoneButton = NSButton.init(image: btnImage, target: self, action: #selector(phoneButtonPressed))
+        if let image = NSImage.init(named: "phone-statusbar-bg") {
+            phoneButton = NSButton.init(image: image, target: self, action: #selector(phoneButtonPressed))
             phoneButton.frame = CGRect.init(x: displayRect.origin.x,
-                                            y: displayRect.origin.y + displayRect.size.height - btnImage.size.height,
-                                            width: btnImage.size.width,
-                                            height: btnImage.size.height)
+                                            y: displayRect.origin.y + displayRect.size.height - image.size.height,
+                                            width: image.size.width,
+                                            height: image.size.height)
             phoneButton.isBordered = false
             phoneButton.imagePosition = .imageOnly
             self.view.addSubview(phoneButton)
         }
-        if let btnImage = NSImage.init(named: "nav-status-bg") {
-            navButton = NSButton.init(image: btnImage, target: self, action: #selector(navButtonPressed))
-            navButton.frame = CGRect.init(x: displayRect.origin.x + displayRect.size.width - btnImage.size.width,
-                                          y: displayRect.origin.y + displayRect.size.height - btnImage.size.height,
-                                          width: btnImage.size.width,
-                                          height: btnImage.size.height)
+        if let image = NSImage.init(named: "nav-status-bg") {
+            navButton = NSButton.init(image: image, target: self, action: #selector(navButtonPressed))
+            navButton.frame = CGRect.init(x: displayRect.origin.x + displayRect.size.width - image.size.width,
+                                          y: displayRect.origin.y + displayRect.size.height - image.size.height,
+                                          width: image.size.width,
+                                          height: image.size.height)
             navButton.isBordered = false
             navButton.imagePosition = .imageOnly
             self.view.addSubview(navButton)
         }
-        if let btnImage = NSImage.init(named: "media-status-bg") {
-            entertainmentButton = NSButton.init(image: btnImage, target: self, action: #selector(entertainmentButtonPressed))
+        if let image = NSImage.init(named: "media-status-bg") {
+            entertainmentButton = NSButton.init(image: image, target: self, action: #selector(entertainmentButtonPressed))
             entertainmentButton.frame = CGRect.init(x: displayRect.origin.x,
                                                     y: displayRect.origin.y,
-                                                    width: btnImage.size.width,
-                                                    height: btnImage.size.height)
+                                                    width: image.size.width,
+                                                    height: image.size.height)
             entertainmentButton.isBordered = false
             entertainmentButton.imagePosition = .imageOnly
             self.view.addSubview(entertainmentButton)
         }
-        if let btnImage = NSImage.init(named: "climate-status-bg") {
-            climateButton = NSButton.init(image: btnImage, target: self, action: #selector(climateButtonPressed))
-            climateButton.frame = CGRect.init(x: displayRect.origin.x + displayRect.size.width - btnImage.size.width,
+        if let image = NSImage.init(named: "climate-status-bg") {
+            climateButton = NSButton.init(image: image, target: self, action: #selector(climateButtonPressed))
+            climateButton.frame = CGRect.init(x: displayRect.origin.x + displayRect.size.width - image.size.width,
                                               y: displayRect.origin.y,
-                                              width: btnImage.size.width,
-                                              height: btnImage.size.height)
+                                              width: image.size.width,
+                                              height: image.size.height)
             climateButton.isBordered = false
             climateButton.imagePosition = .imageOnly
             self.view.addSubview(climateButton)
+        }
+        if let image = NSImage.init(named: "header_bg") {
+            displayHeader = DisplayHeaderView.init(image: image)
+            displayHeader.frame = CGRect.init(x: displayRect.origin.x + (displayRect.size.width / 2) - (image.size.width / 2),
+                                              y: displayRect.origin.y + displayRect.size.height - image.size.height,
+                                              width: image.size.width,
+                                              height: image.size.height)
+            self.view.addSubview(displayHeader)
         }
     }
     
