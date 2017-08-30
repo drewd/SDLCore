@@ -143,7 +143,7 @@ extension RemoteApplication {
                                        frameType: .single,
                                        serviceType: .rpc,
                                        controlCmd: .heartbeat,
-                                       sessionID: 1,
+                                       sessionID: 0,
                                        functionID: .onHMIStatus,
                                        correlationID: 0)
         isAudible = audible
