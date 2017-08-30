@@ -689,7 +689,7 @@
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7GR-mm-JkW" userLabel="display">
                                 <rect key="frame" x="17" y="235" width="806" height="486"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageFrameStyle="photo" image="bg_nav" id="Px8-uS-tJW"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="bottom" imageFrameStyle="groove" image="home_main_image" id="Px8-uS-tJW"/>
                             </imageView>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jVL-YP-QFO" userLabel="down" customClass="MaskedButton" customModule="SDLCore" customModuleProvider="target">
                                 <rect key="frame" x="320" y="20" width="200" height="200"/>
@@ -758,6 +758,6 @@
         <image name="OkButton" width="200" height="200"/>
         <image name="RightButton" width="200" height="200"/>
         <image name="UpButton" width="200" height="200"/>
-        <image name="bg_nav" width="800" height="480"/>
+        <image name="home_main_image" width="800" height="400"/>
     </resources>
 </document>

@@ -67,7 +67,7 @@ static uint32_t nextNALU(uint8_t** ptr_inout, uint32_t length_in)
     if (self.spsData != nil && self.ppsData != nil) {
         const uint8_t * const parameterSetPointers[2] = { self.spsData, self.ppsData };
         const size_t parameterSetSizes[2] = { self.spsSize, self.ppsSize };
-        OSStatus status = CMVideoFormatDescriptionCreateFromH264ParameterSets(kCFAllocatorDefault,
+        OSStatus __unused status = CMVideoFormatDescriptionCreateFromH264ParameterSets(kCFAllocatorDefault,
                                                                               2,
                                                                               parameterSetPointers,
                                                                               parameterSetSizes,
@@ -130,11 +130,11 @@ static uint32_t nextNALU(uint8_t** ptr_inout, uint32_t length_in)
     uint8_t*        pCurr = frame;
     uint32_t        frameLength = 0;
     
-    uint32_t naluLength = 0;
+    uint32_t naluLength;
     uint32_t bufferLengthRemaining = packetSize;
     uint8_t* pNALU = packet;
     
-    while (1) {
+    while (bufferLengthRemaining > (sizeof(uint32_t) + 1)) { // Start code length plus first byte of NALU (type)
         naluLength = nextNALU(&pNALU, bufferLengthRemaining);
         if (naluLength) {
             int type = naluType(pNALU);
