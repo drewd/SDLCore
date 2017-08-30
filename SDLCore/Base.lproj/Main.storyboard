@@ -731,14 +731,20 @@
                                     <action selector="okPressed:" target="XfG-lQ-9wD" id="I9O-oX-13G"/>
                                 </connections>
                             </imageView>
+                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2yu-GQ-RBJ" userLabel="videoDisplay">
+                                <rect key="frame" x="20" y="238" width="800" height="480"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </customView>
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="displayView" destination="7GR-mm-JkW" id="A9j-47-2Ci"/>
                         <outlet property="downButton" destination="jVL-YP-QFO" id="jDx-xY-wBF"/>
                         <outlet property="leftButton" destination="5ST-1u-oJh" id="eGQ-EV-lma"/>
                         <outlet property="okButton" destination="bVp-CI-g4h" id="hYs-Mt-fTU"/>
                         <outlet property="rightButton" destination="Ujk-ij-Xrb" id="1gn-Kw-5WG"/>
                         <outlet property="upButton" destination="PhC-hr-tgc" id="8Nz-xJ-SBh"/>
+                        <outlet property="videoDisplay" destination="2yu-GQ-RBJ" id="eAy-vk-Ayw"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

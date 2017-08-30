@@ -7,15 +7,14 @@ private let windowWidth     = viewportWidth + 40
 private let windowHeight    = viewportHeight + 260
 
 class MaskedButton : NSImageView {
-    
     override open func mouseDown(with event: NSEvent) {
         super.mouseDown(with: event)
         let hitArea = NSMakeRect(event.locationInWindow.x, event.locationInWindow.y, 1.0, 1.0)
         guard let hit = self.image?.hitTest(hitArea,
-                                      withDestinationRect: self.frame,
-                                      context: nil,
-                                      hints: nil,
-                                      flipped: false) else { return }
+                                            withDestinationRect: self.frame,
+                                            context: nil,
+                                            hints: nil,
+                                            flipped: false) else { return }
         if hit {
             guard let action = self.action,
                 let target = self.target else { return }
@@ -24,7 +23,6 @@ class MaskedButton : NSImageView {
     }
 }
 
-
 class ViewController: NSViewController {
     
     @IBOutlet weak var upButton: MaskedButton!
@@ -32,34 +30,58 @@ class ViewController: NSViewController {
     @IBOutlet weak var leftButton: MaskedButton!
     @IBOutlet weak var rightButton: MaskedButton!
     @IBOutlet weak var okButton: MaskedButton!
+    @IBOutlet weak var displayView: NSImageView!
+    @IBOutlet weak var videoDisplay: NSView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.window?.setFrame(NSRect(x: 0, y: 0, width: windowWidth, height: windowHeight), display: true)
-        self.view.layer?.backgroundColor = NSColor.black.cgColor
-        
-        NotificationCenter.default.addObserver(forName: .videoFrameReceived,
+        NotificationCenter.default.addObserver(forName: .videoStreamingEnabled,
                                                object: nil, queue: nil,
-                                               using: videoFrameReceived)
+                                               using: videoStreamingEnabled)
+        NotificationCenter.default.addObserver(forName: .videoSessionOpened,
+                                               object: nil, queue: nil,
+                                               using: videoSessionOpened)
+        NotificationCenter.default.addObserver(forName: .videoSessionClosed,
+                                               object: nil, queue: nil,
+                                               using: videoSessionClosed)
     }
     
-    func videoFrameReceived(notification: Notification) -> Void {
-        guard let userInfo = notification.userInfo,
-            let frameData  = userInfo["frameData"] as? Data else { return }
-        print("Decode H.264: \(frameData.count) bytes")
-        // TODO: Decode h.264 data
+    override func viewDidAppear() {
+        self.view.layer?.backgroundColor = NSColor.black.cgColor // Didn't always work when located in viewDidLoad()
+        self.videoDisplay.isHidden = true
+        self.videoDisplay.layer?.backgroundColor = NSColor.green.cgColor
+    }
+    
+    func videoStreamingEnabled(notification: Notification) -> Void {
+        guard let userInfo = notification.userInfo else { return }
+        guard let video = userInfo["VideoProjectionReceiver"] as? VideoProjectionReceiver else { return }
         DispatchQueue.main.async {
-            // Render on main thread
-            print("Draw video frame")
+            video.setupVideoLayer(self.videoDisplay)
         }
     }
-
+    
+    func videoSessionOpened(notification: Notification) -> Void {
+        // Defer until first frame is recv'd so we don't see a blank video view until that time
+        //DispatchQueue.main.async {
+        //    self.videoDisplay.isHidden = false
+            //self.displayView.isHidden = true
+        //}
+    }
+    
+    func videoSessionClosed(notification: Notification) -> Void {
+        DispatchQueue.main.async {
+            self.videoDisplay.isHidden = true
+            //self.displayView.isHidden = false
+        }
+    }
+    
     override var representedObject: Any? {
         didSet {
             // Update the view, if already loaded.
         }
     }
-
+    
     @IBAction func upPressed(_ sender: Any) {
         print("UP pressed");
     }

@@ -79,7 +79,6 @@ extension Array {
     }
 }
 
-// TODO: MoveMe
 extension UInt32 {
     static func create(fromData data: [UInt8]) -> UInt32 { // Swaps BE<->LE
         let ret = (UInt32(data[3]) << 24) |

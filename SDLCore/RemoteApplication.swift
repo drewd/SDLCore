@@ -95,11 +95,17 @@ class RemoteApplication {
 //
 extension RemoteApplication {
     func handleStartService(_ request: SDLMessage) -> SDLMessage? {
+        if (request.serviceType == .video) {
+            NotificationCenter.default.post(name: .videoSessionOpened, object: nil, userInfo: nil)
+        }
         let response = request.createResponseHeader()
         response.setPayload(Data([0x11, 0x22, 0x33, 0x44])) // hash of the service which was started on the head unit
         return response
     }
     func handleEndService(_ request: SDLMessage) -> SDLMessage? {
+        if (request.serviceType == .video) {
+            NotificationCenter.default.post(name: .videoSessionClosed, object: nil, userInfo: nil)
+        }
         let response = request.createResponseHeader()
         return response
     }
@@ -212,8 +218,8 @@ extension RemoteApplication {
         } catch let error as NSError { print(error.localizedDescription) }
         switch msg.functionID {
         case .registerAppInterface: response = handleRegisterAppInterface(msg, params: params)
-        case .onHMIStatus:          response = handleOnHMIStatus(msg, params: params)
-        case .listFiles:            response = handleListFiles(msg, params: params)
+        case .onHMIStatus:      response = handleOnHMIStatus(msg, params: params)
+        case .listFiles:        response = handleListFiles(msg, params: params)
         case .sendHapticData:       response = handleHapticData(msg, params: params)
         default:                    assert(false, "*** \(msg.functionID) is not implemented ***")
         }
