@@ -26,9 +26,9 @@ class RemoteApplicationManager {
             }
         }
     }
-    func activate() {
+    func toggleStreaming() {
         if let app = apps.first { // DEMO HACK! Always chooses first in list
-            app.sendHMIStatus()
+            app.sendHMIStatus(audible: !app.isAudible)
         }
     }
     func remove(_ app: RemoteApplication) {

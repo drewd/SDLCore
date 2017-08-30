@@ -10,6 +10,7 @@ class RemoteApplication {
     fileprivate var recvMessageID: UInt32 = 0
     fileprivate var sendMessageID: UInt32 = 0
     fileprivate let videoProjection = VideoProjectionReceiver()
+    var isAudible = false
     var isMediaApplication: Bool {
         get {
             guard let appInterface = appInterface else { return false }
@@ -137,7 +138,7 @@ extension RemoteApplication {
 // RPC Message Handlers
 //
 extension RemoteApplication {
-    func sendHMIStatus(/* TODO: Add parameters */) {
+    func sendHMIStatus(audible: Bool) {
         let notification = SDLMessage.init(compressed: false,
                                        frameType: .single,
                                        serviceType: .rpc,
@@ -145,10 +146,11 @@ extension RemoteApplication {
                                        sessionID: 1,
                                        functionID: .onHMIStatus,
                                        correlationID: 0)
+        isAudible = audible
         notification.rpcType = .notification
         do {
             var responseParams = Dictionary<String, Any>()
-            responseParams["audioStreamingState"]   = "AUDIBLE"
+            responseParams["audioStreamingState"]   = isAudible ? "AUDIBLE" : "NOT_AUDIBLE"
             responseParams["hmiLevel"]              = "FULL"
             responseParams["systemContext"]         = "MAIN"
             if let jsonData = try responseParams.jsonData() {

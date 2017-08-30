@@ -134,7 +134,7 @@ static uint32_t nextNALU(uint8_t** ptr_inout, uint32_t length_in)
     uint32_t bufferLengthRemaining = packetSize;
     uint8_t* pNALU = packet;
     
-    while (bufferLengthRemaining > (sizeof(uint32_t) + 1)) { // Start code length plus first byte of NALU (type)
+    while (1) {
         naluLength = nextNALU(&pNALU, bufferLengthRemaining);
         if (naluLength) {
             int type = naluType(pNALU);

@@ -17,6 +17,7 @@ class VideoProjectionReceiver {
     var videoDecoder: VideoDecoder = VideoDecoder()
     var videoLayer: AVSampleBufferDisplayLayer = AVSampleBufferDisplayLayer()
     var view: NSView?
+    var videoHasStarted: () -> Void = {}
     //    private let client: TCPClient
     //    init(client: TCPClient) {
     //        self.client = client
@@ -26,9 +27,10 @@ class VideoProjectionReceiver {
         // Complete hack :/
         NotificationCenter.default.post(name: .videoStreamingEnabled, object: nil, userInfo: ["VideoProjectionReceiver": self])
     }
-    func setupVideoLayer(_ videoView: NSView) {
+    func setupVideoLayer(_ videoView: NSView, videoHasStarted: @escaping () -> Void) {
         // create our AVSampleBufferDisplayLayer and add it to the view
         self.view = videoView
+        self.videoHasStarted = videoHasStarted
         guard let view = self.view else { return }
         self.videoLayer = AVSampleBufferDisplayLayer()
         self.videoLayer.frame = CGRect(x: 0.0, y: 0.0, width: view.bounds.width, height: view.bounds.height)
@@ -51,7 +53,7 @@ class VideoProjectionReceiver {
         print(" ")
     }
     func addFrame(_ frameData: Data) {
-        guard let view = self.view else { return }
+        //guard let view = self.view else { return }
         frameData.withUnsafeBytes { (u8Ptr: UnsafePointer<UInt8>) in
             let rawPtr = UnsafeMutablePointer(mutating: u8Ptr)
             videoDecoder.receivedRawVideoFrame(rawPtr, withSize: UInt32(frameData.count), completion: { (sampleBuffer) in
@@ -63,9 +65,7 @@ class VideoProjectionReceiver {
                 }
                 // Render on main thread
                 DispatchQueue.main.async {
-                    if (view.isHidden == true) { // Show video view
-                        view.isHidden = false
-                    }
+                    self.videoHasStarted()
                     self.videoLayer.enqueue(buffer)
                     self.videoLayer.setNeedsDisplay()
                 }

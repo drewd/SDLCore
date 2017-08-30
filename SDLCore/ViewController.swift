@@ -114,26 +114,51 @@ class ViewController: NSViewController {
         print("climateButtonPressed")
     }
     
+    func showVideoDisplay() {
+        videoDisplay.isHidden = false
+        displayView.isHidden = true
+        phoneButton.isHidden = true
+        navButton.isHidden = true
+        entertainmentButton.isHidden = true
+        climateButton.isHidden = true
+        displayHeader.isHidden = true
+        displayBottomControls.isHidden = true
+    }
+    
+    func hideVideoDisplay() {
+        displayView.isHidden = false
+        videoDisplay.isHidden = true
+        phoneButton.isHidden = false
+        navButton.isHidden = false
+        entertainmentButton.isHidden = false
+        climateButton.isHidden = false
+        displayHeader.isHidden = false
+        displayBottomControls.isHidden = false
+    }
+    
     func videoStreamingEnabled(notification: Notification) -> Void {
+        print("videoStreamingEnabled")
         guard let userInfo = notification.userInfo else { return }
         guard let video = userInfo["VideoProjectionReceiver"] as? VideoProjectionReceiver else { return }
         DispatchQueue.main.async {
-            video.setupVideoLayer(self.videoDisplay)
+            video.setupVideoLayer(self.videoDisplay, videoHasStarted: {
+                if self.videoDisplay.isHidden {
+                    self.showVideoDisplay() // Closure called when a frame has been decoded
+                }
+            })
         }
     }
     
     func videoSessionOpened(notification: Notification) -> Void {
-        // Defer until first frame is recv'd so we don't briefly display a blank video view
-        //DispatchQueue.main.async {
-        //    self.videoDisplay.isHidden = false
-        //  self.displayView.isHidden = true
-        //}
+        print("videoSessionOpened")
+        // Deferred showing of the video display until first frame has
+        // been recv'd so we don't briefly display a blank video view
     }
     
     func videoSessionClosed(notification: Notification) -> Void {
+        print("videoSessionClosed")
         DispatchQueue.main.async {
-            self.videoDisplay.isHidden = true
-            //self.displayView.isHidden = false
+            self.hideVideoDisplay()
         }
     }
     
@@ -157,7 +182,7 @@ class ViewController: NSViewController {
     }
     @IBAction func okPressed(_ sender: Any) {
         print("OK pressed");
-        RemoteApplicationManager.sharedInstance.activate(); // DEMO HACK to activate the remote app
+        RemoteApplicationManager.sharedInstance.toggleStreaming(); // DEMO HACK to toggle video streaming 
     }
 }
 
