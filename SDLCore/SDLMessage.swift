@@ -291,7 +291,13 @@ class SDLMessage {
         msg = SDLMessage.init(rawMsg: data)
         guard let safeMsg = msg else { return msg }
         if safeMsg.bytesInPayload > 0 {
-            guard let payload = client.read(Int(safeMsg.bytesInPayload)) else { return msg } // Read payload
+            var remaining = Int(safeMsg.bytesInPayload)
+            var payload = [Byte]()
+            while(remaining > 0) {
+                guard let buffer = client.read(remaining) else { return msg } // Read payload
+                payload += buffer
+                remaining -= buffer.count
+            }
             //print("Recv'd Payload \(payload.count) bytes")
             safeMsg.setPayload(Data.init(payload))
         }
