@@ -26,20 +26,23 @@ class RemoteApplicationManager {
             }
         }
     }
-//    func toggleStreaming() {
-//        if let app = apps.first { // DEMO HACK! Always chooses first in list
-//            app.sendHMIStatus(audible: !app.isAudible)
-//        }
-//    }
     func remove(_ app: RemoteApplication) {
-        print("pre--\(apps)")
         apps = apps.filter { $0.appBundleID != app.appBundleID }
-        print("post-\(apps)")
         app.shutdown()
     }
     func sendTouchEvent(type: SDLTouchType, id: Int, timestamp: Int, point: NSPoint) {
         if let app = apps.first {
             app.sendTouchEvent(type: type, id: id, timestamp: timestamp, point: point)
+        }
+    }
+    func sendButtonEvent(button: SDLButtonName, mode: SDLButtonEventMode) {
+        if let app = apps.first {
+            app.sendButtonEvent(button: button, mode: mode)
+        }
+    }
+    func sendButtonPress(button: SDLButtonName, mode: SDLButtonPressMode) {
+        if let app = apps.first {
+            app.sendButtonPress(button: button, mode: mode)
         }
     }
 }

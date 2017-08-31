@@ -10,11 +10,11 @@ class ViewController: NSViewController {
     
     let borderWidth: CGFloat = 3.0
     
-    @IBOutlet weak var upButton: MaskedButton!
-    @IBOutlet weak var downButton: MaskedButton!
-    @IBOutlet weak var leftButton: MaskedButton!
-    @IBOutlet weak var rightButton: MaskedButton!
-    @IBOutlet weak var okButton: MaskedButton!
+    @IBOutlet weak var upButton: ControlPanelButton!
+    @IBOutlet weak var downButton: ControlPanelButton!
+    @IBOutlet weak var leftButton: ControlPanelButton!
+    @IBOutlet weak var rightButton: ControlPanelButton!
+    @IBOutlet weak var okButton: ControlPanelButton!
     @IBOutlet weak var displayView: NSImageView!
     @IBOutlet weak var videoDisplay: NSView!
     
@@ -170,19 +170,23 @@ class ViewController: NSViewController {
     
     @IBAction func upPressed(_ sender: Any) {
         print("UP pressed");
+        RemoteApplicationManager.sharedInstance.sendButtonPress(button: .tuneUp, mode: .short)
     }
     @IBAction func downPressed(_ sender: Any) {
         print("DOWN pressed");
+        RemoteApplicationManager.sharedInstance.sendButtonPress(button: .tuneDown, mode: .short)
     }
     @IBAction func leftPressed(_ sender: Any) {
         print("LEFT pressed");
+        RemoteApplicationManager.sharedInstance.sendButtonPress(button: .seekLeft, mode: .short)
     }
     @IBAction func rightPressed(_ sender: Any) {
         print("RIGHT pressed");
+        RemoteApplicationManager.sharedInstance.sendButtonPress(button: .seekRight, mode: .short)
     }
     @IBAction func okPressed(_ sender: Any) {
         print("OK pressed");
-        //RemoteApplicationManager.sharedInstance.toggleStreaming(); // DEMO HACK to toggle video streaming
+        RemoteApplicationManager.sharedInstance.sendButtonPress(button: .ok, mode: .short)
     }
 }
 

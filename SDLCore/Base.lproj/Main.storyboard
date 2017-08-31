@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12120"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -691,7 +691,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="bottom" imageFrameStyle="groove" image="home_main_image" id="Px8-uS-tJW"/>
                             </imageView>
-                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jVL-YP-QFO" userLabel="down" customClass="MaskedButton" customModule="SDLCore" customModuleProvider="target">
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jVL-YP-QFO" userLabel="down" customClass="ControlPanelButton" customModule="SDLCore" customModuleProvider="target">
                                 <rect key="frame" x="320" y="20" width="200" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="DownButton" id="Gpg-E7-MyO"/>
@@ -699,7 +699,7 @@
                                     <action selector="downPressed:" target="XfG-lQ-9wD" id="Iyn-gI-dB6"/>
                                 </connections>
                             </imageView>
-                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PhC-hr-tgc" userLabel="up" customClass="MaskedButton" customModule="SDLCore" customModuleProvider="target">
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PhC-hr-tgc" userLabel="up" customClass="ControlPanelButton" customModule="SDLCore" customModuleProvider="target">
                                 <rect key="frame" x="320" y="20" width="200" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="UpButton" id="h6T-10-zSM"/>
@@ -707,7 +707,7 @@
                                     <action selector="upPressed:" target="XfG-lQ-9wD" id="cBg-AO-oII"/>
                                 </connections>
                             </imageView>
-                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5ST-1u-oJh" userLabel="left" customClass="MaskedButton" customModule="SDLCore" customModuleProvider="target">
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5ST-1u-oJh" userLabel="left" customClass="ControlPanelButton" customModule="SDLCore" customModuleProvider="target">
                                 <rect key="frame" x="320" y="20" width="200" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="LeftButton" id="vXV-4n-fOV"/>
@@ -715,7 +715,7 @@
                                     <action selector="leftPressed:" target="XfG-lQ-9wD" id="DFk-9R-Bbr"/>
                                 </connections>
                             </imageView>
-                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ujk-ij-Xrb" userLabel="right" customClass="MaskedButton" customModule="SDLCore" customModuleProvider="target">
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ujk-ij-Xrb" userLabel="right" customClass="ControlPanelButton" customModule="SDLCore" customModuleProvider="target">
                                 <rect key="frame" x="320" y="20" width="200" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="RightButton" id="8sh-Uh-Pj3"/>
@@ -723,7 +723,7 @@
                                     <action selector="rightPressed:" target="XfG-lQ-9wD" id="55K-76-9vs"/>
                                 </connections>
                             </imageView>
-                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bVp-CI-g4h" userLabel="ok" customClass="MaskedButton" customModule="SDLCore" customModuleProvider="target">
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bVp-CI-g4h" userLabel="ok" customClass="ControlPanelButton" customModule="SDLCore" customModuleProvider="target">
                                 <rect key="frame" x="320" y="20" width="200" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="OkButton" id="TUt-Ek-NuX"/>

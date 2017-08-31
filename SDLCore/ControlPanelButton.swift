@@ -1,9 +1,9 @@
 
 import Cocoa
 
-private var currentlyPressedButton: MaskedButton?
+private var currentlyPressedButton: ControlPanelButton?
 
-class MaskedButton : NSImageView {
+class ControlPanelButton : NSImageView {
     var isPressed = false
     var normalName: String?
     var pressedName: String?

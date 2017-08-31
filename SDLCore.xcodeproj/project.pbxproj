@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		276257391F54F31A00FD88F7 /* VideoProjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2770D97D1F530D4300FCE066 /* VideoProjection.swift */; };
 		2762573D1F55E66500FD88F7 /* VideoDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2762573C1F55E66500FD88F7 /* VideoDecoder.m */; };
-		276257401F5746F900FD88F7 /* MaskedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2762573F1F5746F900FD88F7 /* MaskedButton.swift */; };
+		276257401F5746F900FD88F7 /* ControlPanelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2762573F1F5746F900FD88F7 /* ControlPanelButton.swift */; };
 		276257431F57586200FD88F7 /* ImageViewWithText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276257421F57586200FD88F7 /* ImageViewWithText.swift */; };
 		276257461F5758A300FD88F7 /* DisplayHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276257451F5758A300FD88F7 /* DisplayHeaderView.swift */; };
 		276257481F5759C300FD88F7 /* DisplayBottomControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276257471F5759C300FD88F7 /* DisplayBottomControls.swift */; };
@@ -30,7 +30,7 @@
 		2762573A1F55E66400FD88F7 /* SDLCore-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SDLCore-Bridging-Header.h"; sourceTree = "<group>"; };
 		2762573B1F55E66500FD88F7 /* VideoDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoDecoder.h; sourceTree = "<group>"; };
 		2762573C1F55E66500FD88F7 /* VideoDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoDecoder.m; sourceTree = "<group>"; };
-		2762573F1F5746F900FD88F7 /* MaskedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaskedButton.swift; sourceTree = "<group>"; };
+		2762573F1F5746F900FD88F7 /* ControlPanelButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlPanelButton.swift; sourceTree = "<group>"; };
 		276257421F57586200FD88F7 /* ImageViewWithText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewWithText.swift; sourceTree = "<group>"; };
 		276257451F5758A300FD88F7 /* DisplayHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayHeaderView.swift; sourceTree = "<group>"; };
 		276257471F5759C300FD88F7 /* DisplayBottomControls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayBottomControls.swift; sourceTree = "<group>"; };
@@ -69,7 +69,7 @@
 				276257471F5759C300FD88F7 /* DisplayBottomControls.swift */,
 				276257451F5758A300FD88F7 /* DisplayHeaderView.swift */,
 				276257421F57586200FD88F7 /* ImageViewWithText.swift */,
-				2762573F1F5746F900FD88F7 /* MaskedButton.swift */,
+				2762573F1F5746F900FD88F7 /* ControlPanelButton.swift */,
 				3A986A751F57A20500FB3260 /* VideoProjectionView.swift */,
 			);
 			name = "Custom Controls";
@@ -319,7 +319,7 @@
 				2770D9751F52757600FCE066 /* RemoteApplication.swift in Sources */,
 				276257481F5759C300FD88F7 /* DisplayBottomControls.swift in Sources */,
 				2770D9791F52761C00FCE066 /* ClassExtensions.swift in Sources */,
-				276257401F5746F900FD88F7 /* MaskedButton.swift in Sources */,
+				276257401F5746F900FD88F7 /* ControlPanelButton.swift in Sources */,
 				3A986A761F57A20500FB3260 /* VideoProjectionView.swift in Sources */,
 				2770D9601F50EEE200FCE066 /* AppDelegate.swift in Sources */,
 				276257461F5758A300FD88F7 /* DisplayHeaderView.swift in Sources */,

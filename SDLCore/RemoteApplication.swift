@@ -188,6 +188,46 @@ extension RemoteApplication {
         } catch let error as NSError { print(error) }
         notification.send(client: client)
     }
+    func sendButtonEvent(button: SDLButtonName, mode: SDLButtonEventMode) {
+        let notification = SDLMessage.init(compressed: false,
+                                           frameType: .single,
+                                           serviceType: .rpc,
+                                           controlCmd: .heartbeat,
+                                           sessionID: 0,
+                                           functionID: .onTouchEvent,
+                                           correlationID: 0)
+        notification.rpcType = .notification
+        do {
+            let responseParams = [
+                "name": button.rawValue,
+                "mode": mode.rawValue
+                ] as [String : Any]
+            if let jsonData = try responseParams.jsonData() {
+                notification.setJSON(jsonData)
+            }
+        } catch let error as NSError { print(error) }
+        notification.send(client: client)
+    }
+    func sendButtonPress(button: SDLButtonName, mode: SDLButtonPressMode) {
+        let notification = SDLMessage.init(compressed: false,
+                                           frameType: .single,
+                                           serviceType: .rpc,
+                                           controlCmd: .heartbeat,
+                                           sessionID: 0,
+                                           functionID: .onTouchEvent,
+                                           correlationID: 0)
+        notification.rpcType = .notification
+        do {
+            let responseParams = [
+                "name": button.rawValue,
+                "mode": mode.rawValue
+                ] as [String : Any]
+            if let jsonData = try responseParams.jsonData() {
+                notification.setJSON(jsonData)
+            }
+        } catch let error as NSError { print(error) }
+        notification.send(client: client)
+    }
     func handleRegisterAppInterface(_ request: SDLMessage, params: Dictionary<String, Any>?) -> SDLMessage {
         // Parse params
         if let params = params {

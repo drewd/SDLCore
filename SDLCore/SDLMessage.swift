@@ -53,6 +53,36 @@ enum SDLTouchType: String {
     case end    = "END"
 }
 
+enum SDLButtonName: String {
+    case ok             = "OK"
+    case seekLeft       = "SEEKLEFT"
+    case seekRight      = "SEEKRIGHT"
+    case tuneUp         = "TUNEUP"
+    case tuneDown       = "TUNEDOWN"
+    case preset0        = "PRESET_0"
+    case preset1        = "PRESET_1"
+    case preset2        = "PRESET_2"
+    case preset3        = "PRESET_3"
+    case preset4        = "PRESET_4"
+    case preset5        = "PRESET_5"
+    case preset6        = "PRESET_6"
+    case preset7        = "PRESET_7"
+    case preset8        = "PRESET_8"
+    case preset9        = "PRESET_9"
+    case customButton	= "CUSTOM_BUTTON"
+    case search         = "SEARCH"
+}
+
+enum SDLButtonEventMode: String {
+    case up     = "BUTTONUP"
+    case down   = "BUTTONDOWN"
+}
+
+enum SDLButtonPressMode: String {
+    case short  = "SHORT"
+    case long   = "LONG"
+}
+
 enum SDLRPCFunctionID: UInt32 {
     case reserved = 0
     case registerAppInterface = 1
