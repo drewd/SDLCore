@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12120"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -731,7 +731,7 @@
                                     <action selector="okPressed:" target="XfG-lQ-9wD" id="I9O-oX-13G"/>
                                 </connections>
                             </imageView>
-                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2yu-GQ-RBJ" userLabel="videoDisplay">
+                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2yu-GQ-RBJ" userLabel="videoDisplay" customClass="VideoProjectionView" customModule="SDLCore" customModuleProvider="target">
                                 <rect key="frame" x="20" y="238" width="800" height="480"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </customView>
@@ -758,6 +758,6 @@
         <image name="OkButton" width="200" height="200"/>
         <image name="RightButton" width="200" height="200"/>
         <image name="UpButton" width="200" height="200"/>
-        <image name="home_main_image" width="800" height="400"/>
+        <image name="home_main_image" width="800" height="480"/>
     </resources>
 </document>

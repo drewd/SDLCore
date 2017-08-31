@@ -4,6 +4,12 @@ import SwiftSocket // See: https://github.com/swiftsocket/SwiftSocket
 
 private let supportedVersion: UInt8 = REPORT_SDL_VERSION
 
+enum SDLTouchType: String {
+    case begin  = "BEGIN"
+    case move   = "MOVE"
+    case end    = "END"
+}
+
 class RemoteApplication {
     fileprivate let client: TCPClient
     fileprivate var appInterface: Dictionary<String, Any>?
@@ -153,6 +159,37 @@ extension RemoteApplication {
             responseParams["audioStreamingState"]   = isAudible ? "AUDIBLE" : "NOT_AUDIBLE"
             responseParams["hmiLevel"]              = "FULL"
             responseParams["systemContext"]         = "MAIN"
+            if let jsonData = try responseParams.jsonData() {
+                notification.setJSON(jsonData)
+            }
+        } catch let error as NSError { print(error) }
+        notification.send(client: client)
+    }
+    func sendTouchEvent(type: SDLTouchType, id: Int, timestamp: Int, point: NSPoint) {
+        let notification = SDLMessage.init(compressed: false,
+                                           frameType: .single,
+                                           serviceType: .rpc,
+                                           controlCmd: .heartbeat,
+                                           sessionID: 0,
+                                           functionID: .onTouchEvent,
+                                           correlationID: 0)
+        notification.rpcType = .notification
+        do {
+            let responseParams = [
+                "type": type.rawValue,
+                "event": [
+                    [
+                        "id": id,
+                        "ts": timestamp,
+                        "c": [
+                            [
+                                "x": Int(point.x),
+                                "y": Int(point.y)
+                            ]
+                        ]
+                    ]
+                ]
+            ] as [String : Any]
             if let jsonData = try responseParams.jsonData() {
                 notification.setJSON(jsonData)
             }
