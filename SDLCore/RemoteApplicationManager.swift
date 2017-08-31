@@ -37,4 +37,9 @@ class RemoteApplicationManager {
         print("post-\(apps)")
         app.shutdown()
     }
+    func sendTouchEvent(type: SDLTouchType, id: Int, timestamp: Int, point: NSPoint) {
+        if let app = apps.first {
+            app.sendTouchEvent(type: type, id: id, timestamp: timestamp, point: point)
+        }
+    }
 }

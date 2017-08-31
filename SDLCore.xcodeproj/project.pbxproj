@@ -21,6 +21,7 @@
 		2770D9751F52757600FCE066 /* RemoteApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2770D9741F52757600FCE066 /* RemoteApplication.swift */; };
 		2770D9771F5275B200FCE066 /* SDLMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2770D9761F5275B200FCE066 /* SDLMessage.swift */; };
 		2770D9791F52761C00FCE066 /* ClassExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2770D9781F52761C00FCE066 /* ClassExtensions.swift */; };
+		3A986A761F57A20500FB3260 /* VideoProjectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A986A751F57A20500FB3260 /* VideoProjectionView.swift */; };
 		4468039BA75A882BD14EA550 /* Pods_SDLCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D21D926C4B082D8852AACD0 /* Pods_SDLCore.framework */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +46,7 @@
 		2770D9781F52761C00FCE066 /* ClassExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassExtensions.swift; sourceTree = "<group>"; };
 		2770D97B1F52F3BD00FCE066 /* RegisterAppInterfaceResponse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = RegisterAppInterfaceResponse.json; path = precanned/RegisterAppInterfaceResponse.json; sourceTree = "<group>"; };
 		2770D97D1F530D4300FCE066 /* VideoProjection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoProjection.swift; sourceTree = "<group>"; };
+		3A986A751F57A20500FB3260 /* VideoProjectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoProjectionView.swift; sourceTree = "<group>"; };
 		8A2F902B0CE40E7F8F6E9138 /* Pods-SDLCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDLCore.release.xcconfig"; path = "Pods/Target Support Files/Pods-SDLCore/Pods-SDLCore.release.xcconfig"; sourceTree = "<group>"; };
 		8D21D926C4B082D8852AACD0 /* Pods_SDLCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SDLCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -68,6 +70,7 @@
 				276257451F5758A300FD88F7 /* DisplayHeaderView.swift */,
 				276257421F57586200FD88F7 /* ImageViewWithText.swift */,
 				2762573F1F5746F900FD88F7 /* MaskedButton.swift */,
+				3A986A751F57A20500FB3260 /* VideoProjectionView.swift */,
 			);
 			name = "Custom Controls";
 			sourceTree = "<group>";
@@ -317,6 +320,7 @@
 				276257481F5759C300FD88F7 /* DisplayBottomControls.swift in Sources */,
 				2770D9791F52761C00FCE066 /* ClassExtensions.swift in Sources */,
 				276257401F5746F900FD88F7 /* MaskedButton.swift in Sources */,
+				3A986A761F57A20500FB3260 /* VideoProjectionView.swift in Sources */,
 				2770D9601F50EEE200FCE066 /* AppDelegate.swift in Sources */,
 				276257461F5758A300FD88F7 /* DisplayHeaderView.swift in Sources */,
 				2762573D1F55E66500FD88F7 /* VideoDecoder.m in Sources */,
