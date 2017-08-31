@@ -47,6 +47,12 @@ enum SDLRPCMessageType: UInt8 {
     case notification   = 2
 };
 
+enum SDLTouchType: String {
+    case begin  = "BEGIN"
+    case move   = "MOVE"
+    case end    = "END"
+}
+
 enum SDLRPCFunctionID: UInt32 {
     case reserved = 0
     case registerAppInterface = 1

@@ -2,14 +2,6 @@
 import Foundation
 import SwiftSocket // See: https://github.com/swiftsocket/SwiftSocket
 
-private let supportedVersion: UInt8 = REPORT_SDL_VERSION
-
-enum SDLTouchType: String {
-    case begin  = "BEGIN"
-    case move   = "MOVE"
-    case end    = "END"
-}
-
 class RemoteApplication {
     fileprivate let client: TCPClient
     fileprivate var appInterface: Dictionary<String, Any>?
@@ -221,6 +213,9 @@ extension RemoteApplication {
     }
     func handleOnHMIStatus(_ request: SDLMessage, params: Dictionary<String, Any>?) -> SDLMessage {
         let response = request.createResponseHeader();
+        //**********
+        sendHMIStatus(audible: true) // Temp hack to allow video streaming from app
+        //**********
         return response
     }
     func handleHapticData(_ request: SDLMessage, params: Dictionary<String, Any>?) -> SDLMessage {

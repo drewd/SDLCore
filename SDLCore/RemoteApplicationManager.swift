@@ -26,11 +26,11 @@ class RemoteApplicationManager {
             }
         }
     }
-    func toggleStreaming() {
-        if let app = apps.first { // DEMO HACK! Always chooses first in list
-            app.sendHMIStatus(audible: !app.isAudible)
-        }
-    }
+//    func toggleStreaming() {
+//        if let app = apps.first { // DEMO HACK! Always chooses first in list
+//            app.sendHMIStatus(audible: !app.isAudible)
+//        }
+//    }
     func remove(_ app: RemoteApplication) {
         print("pre--\(apps)")
         apps = apps.filter { $0.appBundleID != app.appBundleID }

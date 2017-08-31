@@ -49,6 +49,7 @@ class VideoProjectionReceiver {
     }
     func AVSampleBufferDisplayLayerFailedToDecode(notification: Notification) -> Void {
         guard let userInfo = notification.userInfo else { return }
+        print(" ")
         print("*** ERROR: \(userInfo) \n ********")
         print(" ")
     }

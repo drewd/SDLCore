@@ -182,7 +182,7 @@ class ViewController: NSViewController {
     }
     @IBAction func okPressed(_ sender: Any) {
         print("OK pressed");
-        RemoteApplicationManager.sharedInstance.toggleStreaming(); // DEMO HACK to toggle video streaming 
+        //RemoteApplicationManager.sharedInstance.toggleStreaming(); // DEMO HACK to toggle video streaming
     }
 }
 
