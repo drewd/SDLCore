@@ -1,11 +1,11 @@
 
 import Foundation
 
-let ssId     = "SDLNameId"
-let ssX      = "SDLNameX"
-let ssY      = "SDLNameY"
-let ssWidth  = "SDLNameWidth"
-let ssHeight = "SDLNameHeight"
+let ssId     = "id"
+let ssX      = "x"
+let ssY      = "y"
+let ssWidth  = "width"
+let ssHeight = "height"
 
 struct SDLSpatialStruct {
     var identifier: UInt32!
@@ -35,6 +35,7 @@ struct SDLSpatialStruct {
 
 class HapticManager {
     static let sharedInstance = HapticManager() // Singleton
+    var regionsUpdated: ([SDLSpatialStruct]) -> Void = {_ in }
     var spatialStructs = [SDLSpatialStruct]()
     func enumerate(closure: (SDLSpatialStruct) -> Void) {
         for spatialStruct in spatialStructs {
@@ -46,5 +47,9 @@ class HapticManager {
         for spatialStruct in spatialStructs {
             self.spatialStructs.append(SDLSpatialStruct.init(spatialStruct))
         }
+        regionsUpdated(self.spatialStructs)
+    }
+    func registerForUpdates(regionsUpdated: @escaping ([SDLSpatialStruct]) -> Void) {
+        self.regionsUpdated = regionsUpdated
     }
 }
