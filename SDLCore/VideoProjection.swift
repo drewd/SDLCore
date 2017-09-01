@@ -69,6 +69,9 @@ class VideoProjectionReceiver {
                     self.videoHasStarted()
                     self.videoLayer.enqueue(buffer)
                     self.videoLayer.setNeedsDisplay()
+                    if let view = self.view as? VideoProjectionView {
+                        view.focusView.layer?.setNeedsDisplay()
+                    }
                 }
             })
         }
