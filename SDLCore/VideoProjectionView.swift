@@ -54,7 +54,11 @@ class VideoProjectionView: NSView {
             if spatialStructs.count == 0 { return }
             // TODO:
         }
-        override func draw(_ dirtyRect: NSRect) {
+        func notifySelected() {
+            if spatialStructs.count == 0 { return }
+            // TODO:
+        }
+       override func draw(_ dirtyRect: NSRect) {
             super.draw(dirtyRect)
             for spatialStruct in self.spatialStructs {
                 let text = String(spatialStruct.identifier)
