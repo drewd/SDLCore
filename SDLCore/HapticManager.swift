@@ -2,6 +2,7 @@
 import Foundation
 
 let ssId     = "id"
+let ssRect   = "rect"
 let ssX      = "x"
 let ssY      = "y"
 let ssWidth  = "width"
@@ -25,11 +26,19 @@ struct SDLSpatialStruct {
         self.height = height
     }
     init(_ dict: Dictionary<String, Any>) {
+        if let rect = dict[ssRect] as! Dictionary<String, Any>? {
         self.init(identifier: dict[ssId] as! UInt32,
-                  x: dict[ssX] as! CGFloat,
-                  y: dict[ssY] as! CGFloat,
-                  width: dict[ssWidth] as! CGFloat,
-                  height: dict[ssHeight] as! CGFloat)
+                  x: rect[ssX] as! CGFloat,
+                  y: rect[ssY] as! CGFloat,
+                  width: rect[ssWidth] as! CGFloat,
+                  height: rect[ssHeight] as! CGFloat)
+        } else {
+            self.init(identifier: dict[ssId] as! UInt32,
+                      x: 0,
+                      y: 0,
+                      width: 0,
+                      height: 0)
+        }
     }
 }
 
@@ -45,7 +54,10 @@ class HapticManager {
     func setSpatialStructs(_ spatialStructs: [Dictionary<String, Any>]) {
         self.spatialStructs.removeAll()
         for spatialStruct in spatialStructs {
-            self.spatialStructs.append(SDLSpatialStruct.init(spatialStruct))
+            let ss = SDLSpatialStruct.init(spatialStruct)
+            if ss.width > 0 {
+                self.spatialStructs.append(ss)
+            }
         }
         regionsUpdated(self.spatialStructs)
     }
