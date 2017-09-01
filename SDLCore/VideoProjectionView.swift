@@ -9,7 +9,53 @@
 import Cocoa
 
 class VideoProjectionView: NSView {
-
+    
+    class FocusView: NSView {
+        override func draw(_ dirtyRect: NSRect) {
+            super.draw(dirtyRect)
+            HapticManager.sharedInstance.enumerate { (spacialStruct) in
+                
+                Swift.print("-- spacialStruct \(spacialStruct)")
+                
+                let text = String(spacialStruct.identifier)
+                
+                let flippedRect = NSRect(x: spacialStruct.x,
+                                         y: self.bounds.height - (spacialStruct.y + spacialStruct.height),
+                                         width: spacialStruct.width,
+                                         height: spacialStruct.height)
+                
+                let border = NSBezierPath(roundedRect: flippedRect, xRadius: 2, yRadius: 2)
+                NSColor.purple.set()
+                border.lineWidth = 10
+                border.stroke()
+                
+                if let font = NSFont.init(name: "Arial", size: 18) {
+                    let attrs = [NSFontAttributeName:font,
+                                 NSForegroundColorAttributeName:NSColor.darkGray]
+                    let size = text.size(withAttributes: attrs)
+                    let x = (flippedRect.width / 2) - (size.width / 2)
+                    let y = (flippedRect.height / 2) - (size.height / 2)
+                    let drawRect = flippedRect.offsetBy(dx: x, dy: -y)
+                    text.draw(in: drawRect, withAttributes: attrs)
+                }
+                
+            }
+        }
+    }
+    
+    var focusView: FocusView?
+    
+    override open func viewDidUnhide() {
+        super.viewDidUnhide()
+        self.focusView = FocusView(frame: NSRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height))
+        guard let focusView = self.focusView else { return }
+        self.addSubview(focusView)
+    }
+    
+    func phoneButtonPressed(_ sender: Any) {
+        Swift.print("phoneButtonPressed")
+    }
+    
     override func mouseDown(with event: NSEvent) {
         sendTouch(type: .begin, event: event)
     }

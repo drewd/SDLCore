@@ -253,12 +253,20 @@ extension RemoteApplication {
     }
     func handleOnHMIStatus(_ request: SDLMessage, params: Dictionary<String, Any>?) -> SDLMessage {
         let response = request.createResponseHeader();
-        //**********
-        sendHMIStatus(audible: true) // Temp hack to allow video streaming from app
-        //**********
+        //**************************************************************************************************************
+        // HACK: Allow video streaming from app
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { // Allow handset proxy to reach a valid lifecycle state
+            self.sendHMIStatus(audible: true)
+        }
+        //**************************************************************************************************************
         return response
     }
     func handleHapticData(_ request: SDLMessage, params: Dictionary<String, Any>?) -> SDLMessage {
+        if let params = params {
+            if let spatialStructs = params["SDLNameHapticSpatialData"] as? [Dictionary<String, Any>] {
+                HapticManager.sharedInstance.setSpatialStructs(spatialStructs)
+            }
+        }
         let response = request.createResponseHeader();
         return response
     }
@@ -292,8 +300,8 @@ extension RemoteApplication {
         } catch let error as NSError { print(error.localizedDescription) }
         switch msg.functionID {
         case .registerAppInterface: response = handleRegisterAppInterface(msg, params: params)
-        case .onHMIStatus:      response = handleOnHMIStatus(msg, params: params)
-        case .listFiles:        response = handleListFiles(msg, params: params)
+        case .onHMIStatus:          response = handleOnHMIStatus(msg, params: params)
+        case .listFiles:            response = handleListFiles(msg, params: params)
         case .sendHapticData:       response = handleHapticData(msg, params: params)
         default:                    assert(false, "*** \(msg.functionID) is not implemented ***")
         }
