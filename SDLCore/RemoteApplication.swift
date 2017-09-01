@@ -249,10 +249,6 @@ extension RemoteApplication {
                 }
             }
         } catch let error as NSError { print(error) }
-        return response
-    }
-    func handleOnHMIStatus(_ request: SDLMessage, params: Dictionary<String, Any>?) -> SDLMessage {
-        let response = request.createResponseHeader();
         //**************************************************************************************************************
         // HACK: Allow video streaming from app
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { // Allow handset proxy to reach a valid lifecycle state
@@ -261,9 +257,13 @@ extension RemoteApplication {
         //**************************************************************************************************************
         return response
     }
+    func handleOnHMIStatus(_ request: SDLMessage, params: Dictionary<String, Any>?) -> SDLMessage {
+        let response = request.createResponseHeader();
+        return response
+    }
     func handleHapticData(_ request: SDLMessage, params: Dictionary<String, Any>?) -> SDLMessage {
         if let params = params {
-            if let spatialStructs = params["SDLNameHapticSpatialData"] as? [Dictionary<String, Any>] {
+            if let spatialStructs = params["hapticSpatialData"] as? [Dictionary<String, Any>] {
                 HapticManager.sharedInstance.setSpatialStructs(spatialStructs)
             }
         }

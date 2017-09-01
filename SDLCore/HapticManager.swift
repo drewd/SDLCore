@@ -51,5 +51,6 @@ class HapticManager {
     }
     func registerForUpdates(regionsUpdated: @escaping ([SDLSpatialStruct]) -> Void) {
         self.regionsUpdated = regionsUpdated
+        regionsUpdated(self.spatialStructs)
     }
 }

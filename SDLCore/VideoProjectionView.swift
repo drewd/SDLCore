@@ -9,26 +9,67 @@
 import Cocoa
 
 class VideoProjectionView: NSView {
-    
+    //
+    // TODO: Should FocusView get broken up into FocusManager and a separate FocusView???
+    //
     class FocusView: NSView {
+        var currentFocusID: UInt32 = 0
+        var spatialStructs = [SDLSpatialStruct]()
+        override init(frame frameRect: NSRect) {
+            super.init(frame: frameRect)
+            HapticManager.sharedInstance.registerForUpdates(regionsUpdated: { (spatialStructs) in
+                self.spatialStructs = spatialStructs
+            })
+            for spatialStruct in self.spatialStructs {
+                Swift.print("-- spatialStruct \(spatialStruct)")
+            }
+        }
+        required init?(coder aDecoder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
+        func next() {
+            if spatialStructs.count == 0 { return }
+            currentFocusID += 1
+            if (currentFocusID >= UInt32(spatialStructs.count)) { currentFocusID = 0 }
+        }
+        func prev() {
+            if spatialStructs.count == 0 { return }
+            currentFocusID -= 1
+            if (currentFocusID >= UInt32(spatialStructs.count)) { currentFocusID = UInt32(spatialStructs.count - 1) }
+            
+        }
+        func moveLeft() {
+            if spatialStructs.count == 0 { return }
+            // TODO:
+        }
+        func moveRight() {
+            if spatialStructs.count == 0 { return }
+            // TODO:
+        }
+        func moveUp() {
+            if spatialStructs.count == 0 { return }
+            // TODO:
+        }
+        func moveDown() {
+            if spatialStructs.count == 0 { return }
+            // TODO:
+        }
         override func draw(_ dirtyRect: NSRect) {
             super.draw(dirtyRect)
-            HapticManager.sharedInstance.enumerate { (spacialStruct) in
-                
-                Swift.print("-- spacialStruct \(spacialStruct)")
-                
-                let text = String(spacialStruct.identifier)
-                
-                let flippedRect = NSRect(x: spacialStruct.x,
-                                         y: self.bounds.height - (spacialStruct.y + spacialStruct.height),
-                                         width: spacialStruct.width,
-                                         height: spacialStruct.height)
-                
+            for spatialStruct in self.spatialStructs {
+                let text = String(spatialStruct.identifier)
+                let flippedRect = NSRect(x: spatialStruct.x,
+                                         y: self.bounds.height - (spatialStruct.y + spatialStruct.height),
+                                         width: spatialStruct.width,
+                                         height: spatialStruct.height)
                 let border = NSBezierPath(roundedRect: flippedRect, xRadius: 2, yRadius: 2)
-                NSColor.purple.set()
+                if spatialStruct.identifier == currentFocusID {
+                    NSColor.yellow.set()
+                } else {
+                    NSColor.purple.set()
+                }
                 border.lineWidth = 10
                 border.stroke()
-                
                 if let font = NSFont.init(name: "Arial", size: 18) {
                     let attrs = [NSFontAttributeName:font,
                                  NSForegroundColorAttributeName:NSColor.darkGray]
@@ -38,17 +79,15 @@ class VideoProjectionView: NSView {
                     let drawRect = flippedRect.offsetBy(dx: x, dy: -y)
                     text.draw(in: drawRect, withAttributes: attrs)
                 }
-                
             }
         }
     }
     
-    var focusView: FocusView?
+    var focusView = FocusView()
     
     override open func viewDidUnhide() {
         super.viewDidUnhide()
-        self.focusView = FocusView(frame: NSRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height))
-        guard let focusView = self.focusView else { return }
+        focusView = FocusView(frame: NSRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height))
         self.addSubview(focusView)
     }
     
