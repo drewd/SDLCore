@@ -16,7 +16,7 @@ class ViewController: NSViewController {
     @IBOutlet weak var rightButton: ControlPanelButton!
     @IBOutlet weak var okButton: ControlPanelButton!
     @IBOutlet weak var displayView: NSImageView!
-    @IBOutlet weak var videoDisplay: NSView!
+    @IBOutlet weak var videoDisplay: VideoProjectionView!
     
     var phoneButton = NSButton()
     var navButton = NSButton()
@@ -178,15 +178,27 @@ class ViewController: NSViewController {
     }
     @IBAction func leftPressed(_ sender: Any) {
         print("LEFT pressed");
-        RemoteApplicationManager.sharedInstance.sendButtonPress(button: .seekLeft, mode: .short)
+        if self.videoDisplay.isHidden {
+            RemoteApplicationManager.sharedInstance.sendButtonPress(button: .seekLeft, mode: .short)
+        } else {
+            self.videoDisplay.focusView.prev()
+        }
     }
     @IBAction func rightPressed(_ sender: Any) {
         print("RIGHT pressed");
-        RemoteApplicationManager.sharedInstance.sendButtonPress(button: .seekRight, mode: .short)
+        if self.videoDisplay.isHidden {
+            RemoteApplicationManager.sharedInstance.sendButtonPress(button: .seekRight, mode: .short)
+        } else {
+            self.videoDisplay.focusView.next()
+        }
     }
     @IBAction func okPressed(_ sender: Any) {
         print("OK pressed");
-        RemoteApplicationManager.sharedInstance.sendButtonPress(button: .ok, mode: .short)
+        if self.videoDisplay.isHidden {
+            RemoteApplicationManager.sharedInstance.sendButtonPress(button: .ok, mode: .short)
+        } else {
+            self.videoDisplay.focusView.notifySelected()
+        }
     }
 }
 

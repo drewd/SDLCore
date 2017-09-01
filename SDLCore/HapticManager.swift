@@ -25,20 +25,16 @@ struct SDLSpatialStruct {
         self.width = width
         self.height = height
     }
-    init(_ dict: Dictionary<String, Any>) {
-        if let rect = dict[ssRect] as! Dictionary<String, Any>? {
-        self.init(identifier: dict[ssId] as! UInt32,
+    init(identifier: UInt32, rect: Dictionary<String, Any>) {
+        self.init(identifier: identifier,
                   x: rect[ssX] as! CGFloat,
                   y: rect[ssY] as! CGFloat,
                   width: rect[ssWidth] as! CGFloat,
                   height: rect[ssHeight] as! CGFloat)
-        } else {
-            self.init(identifier: dict[ssId] as! UInt32,
-                      x: 0,
-                      y: 0,
-                      width: 0,
-                      height: 0)
-        }
+    }
+    init(_ dict: Dictionary<String, Any>) {
+        self.init(identifier: dict[ssId] as! UInt32,
+                  rect: dict["rect"] as! Dictionary<String, Any>)
     }
 }
 

@@ -263,7 +263,7 @@ extension RemoteApplication {
     }
     func handleHapticData(_ request: SDLMessage, params: Dictionary<String, Any>?) -> SDLMessage {
         if let params = params {
-            if let spatialStructs = params["hapticSpatialData"] as? [Dictionary<String, Any>] {
+            if let spatialStructs = params["hapticRectData"] as? [Dictionary<String, Any>] {
                 HapticManager.sharedInstance.setSpatialStructs(spatialStructs)
             }
         }

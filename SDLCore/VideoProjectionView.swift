@@ -19,24 +19,39 @@ class VideoProjectionView: NSView {
             super.init(frame: frameRect)
             HapticManager.sharedInstance.registerForUpdates(regionsUpdated: { (spatialStructs) in
                 self.spatialStructs = spatialStructs
+                for spatialStruct in self.spatialStructs {
+                    Swift.print("-- spatialStruct \(spatialStruct)")
+                }
+                self.setNeedsDisplay(frameRect)
+                self.displayIfNeeded()
             })
-            for spatialStruct in self.spatialStructs {
-                Swift.print("-- spatialStruct \(spatialStruct)")
-            }
         }
         required init?(coder aDecoder: NSCoder) {
             fatalError("init(coder:) has not been implemented")
         }
         func next() {
             if spatialStructs.count == 0 { return }
-            currentFocusID += 1
-            if (currentFocusID >= UInt32(spatialStructs.count)) { currentFocusID = 0 }
+            if currentFocusID == 0 {
+                currentFocusID = spatialStructs[0].identifier
+            } else if let index = spatialStructs.index(where: { $0.identifier == currentFocusID } ) {
+                if index + 1 >= spatialStructs.count {
+                    currentFocusID = 0
+                } else {
+                    currentFocusID = spatialStructs[index + 1].identifier
+                }
+            }
         }
         func prev() {
             if spatialStructs.count == 0 { return }
-            currentFocusID -= 1
-            if (currentFocusID >= UInt32(spatialStructs.count)) { currentFocusID = UInt32(spatialStructs.count - 1) }
-            
+            if currentFocusID == 0 {
+                currentFocusID = spatialStructs.last?.identifier ?? 0
+            } else if let index = spatialStructs.index(where: { $0.identifier == currentFocusID } ) {
+                if index - 1 < 0 {
+                    currentFocusID = 0
+                } else {
+                    currentFocusID = spatialStructs[index - 1].identifier
+                }
+            }
         }
         func moveLeft() {
             if spatialStructs.count == 0 { return }
@@ -55,8 +70,14 @@ class VideoProjectionView: NSView {
             // TODO:
         }
         func notifySelected() {
-            if spatialStructs.count == 0 { return }
-            // TODO:
+            if let spatial = spatialStructs.first(where: { $0.identifier == currentFocusID } ) {
+                let point = NSPoint(x: spatial.width / 2 + spatial.x,
+                                    y: spatial.height / 2 + spatial.y)
+                RemoteApplicationManager.sharedInstance.sendTouchEvent(
+                    type: .begin, id: Int(spatial.identifier), timestamp: 1000, point: point)
+                RemoteApplicationManager.sharedInstance.sendTouchEvent(
+                    type: .end, id: Int(spatial.identifier), timestamp: 1001, point: point)
+            }
         }
        override func draw(_ dirtyRect: NSRect) {
             super.draw(dirtyRect)
